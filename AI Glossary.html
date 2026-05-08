@@ -1,0 +1,545 @@
+<div class="aidf-gloss">
+  <style>
+    .aidf-gloss {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #0B1220;
+      line-height: 1.55;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 4px 0 24px;
+    }
+    .aidf-gloss * { box-sizing: border-box; }
+    .aidf-gloss a { color: inherit; }
+
+    /* Hero */
+    .aidf-hero {
+      border-radius: 28px;
+      padding: 38px 32px;
+      color: #ffffff;
+      background: linear-gradient(115deg, #071D33 0%, #003D7C 55%, #EF7C00 130%);
+      box-shadow: 0 18px 48px rgba(6, 24, 44, 0.18);
+    }
+    .aidf-eyebrow {
+      color: #C8A75D;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .aidf-hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+    .aidf-hero p {
+      max-width: 720px;
+      color: rgba(255,255,255,0.82);
+      font-size: 16px;
+      margin: 0 0 22px;
+    }
+    .aidf-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .aidf-stat {
+      flex: 1 1 140px;
+      min-width: 140px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+    .aidf-stat-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .aidf-stat-label {
+      margin-top: 6px;
+      color: rgba(255,255,255,0.74);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Section common */
+    .aidf-section {
+      margin-top: 28px;
+      padding: 26px 28px;
+      background: #FFFCF7;
+      border: 1px solid rgba(7,29,51,0.10);
+      border-radius: 26px;
+      box-shadow: 0 10px 28px rgba(6, 24, 44, 0.06);
+    }
+    .aidf-section h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: #071D33;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      margin: 0 0 6px;
+    }
+    .aidf-section .aidf-sub {
+      color: #55606F;
+      font-size: 15px;
+      margin: 0 0 20px;
+      max-width: 780px;
+    }
+
+    /* Talk lens grid */
+    .aidf-talk-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .aidf-talk-card {
+      border: 1px solid rgba(7,29,51,0.12);
+      border-top: 3px solid #EF7C00;
+      border-radius: 16px;
+      padding: 16px;
+      background: #ffffff;
+    }
+    .aidf-talk-company {
+      color: #EF7C00;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .aidf-talk-topic {
+      color: #071D33;
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 1.2;
+      margin-top: 6px;
+      letter-spacing: -0.01em;
+    }
+    .aidf-talk-terms {
+      color: #55606F;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    /* Quick guide */
+    .aidf-guide {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .aidf-guide-card {
+      border: 1px solid rgba(7,29,51,0.10);
+      border-radius: 16px;
+      padding: 18px;
+      background: #ffffff;
+    }
+    .aidf-guide-card h3 {
+      color: #071D33;
+      font-size: 17px;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+    .aidf-guide-card ul {
+      padding-left: 18px;
+      margin: 0;
+      color: #55606F;
+      font-size: 14px;
+    }
+    .aidf-guide-card li { margin-bottom: 6px; }
+
+    /* Glossary categories */
+    .aidf-cat {
+      border: 1px solid rgba(7,29,51,0.10);
+      border-radius: 18px;
+      background: #ffffff;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .aidf-cat[open] { box-shadow: 0 8px 22px rgba(6,24,44,0.06); }
+    .aidf-cat-head {
+      cursor: pointer;
+      list-style: none;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(180deg, #ffffff, #f8f5ee);
+    }
+    .aidf-cat-head::-webkit-details-marker { display: none; }
+    .aidf-cat-head::marker { content: ""; }
+    .aidf-cat-head::after {
+      content: "+";
+      color: #EF7C00;
+      font-weight: 800;
+      font-size: 22px;
+      line-height: 1;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(239,124,0,0.3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .aidf-cat[open] .aidf-cat-head::after { content: "−"; }
+    .aidf-cat-name {
+      color: #071D33;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .aidf-cat-count {
+      color: #003D7C;
+      background: rgba(0,61,124,0.08);
+      border: 1px solid rgba(0,61,124,0.16);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-left: auto;
+      margin-right: 12px;
+    }
+
+    /* Term cards */
+    .aidf-term-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding: 16px 20px 20px;
+    }
+    .aidf-term-card {
+      border: 1px solid rgba(7,29,51,0.10);
+      border-left: 3px solid #003D7C;
+      border-radius: 14px;
+      padding: 16px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+    }
+    .aidf-term-cat {
+      align-self: flex-start;
+      color: #003D7C;
+      background: rgba(0,61,124,0.06);
+      border: 1px solid rgba(0,61,124,0.16);
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .aidf-term-title {
+      color: #071D33;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 10px 0 6px;
+    }
+    .aidf-term-def {
+      color: #303B4C;
+      font-size: 13.5px;
+      margin: 0;
+      flex: 1;
+    }
+    .aidf-term-link {
+      color: #EF7C00;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      margin-top: 12px;
+      display: inline-block;
+    }
+    .aidf-term-link:hover { text-decoration: underline; }
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .aidf-hero h1 { font-size: 34px; }
+      .aidf-talk-grid,
+      .aidf-term-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .aidf-guide { grid-template-columns: 1fr; }
+    }
+    /* Phone */
+    @media (max-width: 600px) {
+      .aidf-hero { padding: 26px 20px; }
+      .aidf-section { padding: 20px 18px; }
+      .aidf-hero h1 { font-size: 28px; }
+      .aidf-talk-grid,
+      .aidf-term-grid { grid-template-columns: 1fr; }
+      .aidf-cat-head { padding: 14px 16px; }
+      .aidf-cat-name { font-size: 16px; }
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="aidf-hero">
+    <div class="aidf-eyebrow">NUS &#215; AIDF &#183; Silicon Valley Study Trip &#183; May 18&#8211;22, 2026</div>
+    <h1>AI Glossary for Future Leaders</h1>
+    <p>A curated executive glossary for AI terms likely to appear across the Silicon Valley sessions: innovation mindset, data strategy, AI-powered decisions, cybersecurity and trust, responsible AI, workforce upskilling, and human&#8211;AI collaboration.</p>
+    <div class="aidf-stats">
+      <div class="aidf-stat"><div class="aidf-stat-num">157</div><div class="aidf-stat-label">Glossary terms</div></div>
+      <div class="aidf-stat"><div class="aidf-stat-num">9</div><div class="aidf-stat-label">Executive themes</div></div>
+      <div class="aidf-stat"><div class="aidf-stat-num">9</div><div class="aidf-stat-label">Company sessions</div></div>
+      <div class="aidf-stat"><div class="aidf-stat-num">5</div><div class="aidf-stat-label">Study-trip days</div></div>
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section class="aidf-section">
+    <h2>How to use this glossary</h2>
+    <p class="aidf-sub">The objective is not to memorize technical jargon, but to ask sharper questions during company visits and translate AI concepts into leadership decisions. Click any category below to expand its terms.</p>
+    <div class="aidf-guide">
+      <div class="aidf-guide-card">
+        <h3>Before each visit</h3>
+        <ul>
+          <li>Open the relevant category, then review 10&#8211;15 terms that match the session topic.</li>
+          <li>Ask: &#8220;Is this concept a technology capability, a data requirement, an operating model, or a risk-control issue?&#8221;</li>
+          <li>Prepare one business question: adoption, ROI, talent, governance, or competitive advantage.</li>
+        </ul>
+      </div>
+      <div class="aidf-guide-card">
+        <h3>During Q&amp;A</h3>
+        <ul>
+          <li>Move from &#8220;What is the technology?&#8221; to &#8220;What decision does it improve, and how is success measured?&#8221;</li>
+          <li>Probe the implementation layer: data readiness, model evaluation, change management, security, and accountability.</li>
+          <li>Capture reusable patterns: build/buy/partner choices, human-in-the-loop design, and responsible scaling.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TALK LENS -->
+  <section class="aidf-section">
+    <h2>Talk lens: where the terms may appear</h2>
+    <p class="aidf-sub">The glossary is organized around the scheduled Silicon Valley sessions, so participants can connect vocabulary to leadership, data, cyber trust, ethics, and organizational transformation.</p>
+    <div class="aidf-talk-grid">
+      <div class="aidf-talk-card"><div class="aidf-talk-company">SVIC / Silicon Valley</div><div class="aidf-talk-topic">Innovation Mindset &amp; Corporate Innovation Models</div><div class="aidf-talk-terms">AI strategy, innovation flywheel, platform strategy, venture building, product-market fit</div></div>
+      <div class="aidf-talk-card"><div class="aidf-talk-company">Adobe / Netflix</div><div class="aidf-talk-topic">AI for Future Leaders &amp; Global Leadership</div><div class="aidf-talk-terms">generative AI, personalization, recommender systems, creative AI, AI operating model</div></div>
+      <div class="aidf-talk-card"><div class="aidf-talk-company">Amazon / Cisco</div><div class="aidf-talk-topic">Corporate Innovation &amp; Data as a Strategic Asset</div><div class="aidf-talk-terms">working backwards, two-pizza teams, cloud AI, data governance, data quality, metadata, APIs</div></div>
+      <div class="aidf-talk-card"><div class="aidf-talk-company">Box / Salesforce</div><div class="aidf-talk-topic">AI-Powered Decision-Making &amp; Business-Aligned AI Strategies</div><div class="aidf-talk-terms">decision intelligence, predictive analytics, MCP, A2A, agentic work units, human-in-the-loop, MLOps</div></div>
+      <div class="aidf-talk-card"><div class="aidf-talk-company">Google / Microsoft</div><div class="aidf-talk-topic">Cybersecurity, Trust, Resilience &amp; Change Management</div><div class="aidf-talk-terms">prompt injection, AI governance, SAIF, NIST AI RMF, watermarking, guardrails, AI literacy, pilot purgatory</div></div>
+      <div class="aidf-talk-card"><div class="aidf-talk-company">Hayden AI / Smart Cities</div><div class="aidf-talk-topic">Responsible &amp; Ethical AI for Urban Intelligence</div><div class="aidf-talk-terms">responsible AI, computer vision, edge AI, privacy, bias, explainability, model monitoring</div></div>
+      <div class="aidf-talk-card"><div class="aidf-talk-company">Stanford HAI / SCU</div><div class="aidf-talk-topic">Workforce Upskilling &amp; Human–AI Collaboration</div><div class="aidf-talk-terms">AI literacy, augmentation, copilot, centaur model, automation bias, human-centered AI</div></div>
+      <div class="aidf-talk-card"><div class="aidf-talk-company">Plug &amp; Play / Startups</div><div class="aidf-talk-topic">Venture Building, Fundraising &amp; Scaling</div><div class="aidf-talk-terms">AI moat, data network effects, term sheet, SAFE note, blitzscaling, build-buy-partner, AI ROI</div></div>
+      <div class="aidf-talk-card"><div class="aidf-talk-company">Leadership Workshop</div><div class="aidf-talk-topic">Leadership Action Planning</div><div class="aidf-talk-terms">AI transformation roadmap, governance cadence, operating model, KPIs, change management</div></div>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="aidf-section">
+    <h2>Comprehensive AI glossary</h2>
+    <p class="aidf-sub">Click each theme to expand the terms. Reference links open in a new tab and favor official or widely used technical sources.</p>
+    <details class="aidf-cat" open>
+      <summary class="aidf-cat-head"><span class="aidf-cat-name">Core AI</span><span class="aidf-cat-count">15 terms</span></summary>
+      <div class="aidf-term-grid">
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Algorithm</h4><p class="aidf-term-def">An algorithm is a structured set of instructions for transforming inputs into outputs. In AI, algorithms define how models learn from data, generate predictions, or optimize decisions.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Artificial Intelligence (AI)</h4><p class="aidf-term-def">AI refers to computer systems that perform tasks requiring human-like capabilities such as perception, reasoning, language understanding, prediction, or decision support. In executive discussions, AI is best treated as a portfolio of capabilities rather than a single technology.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Dataset</h4><p class="aidf-term-def">A dataset is a collection of examples used for training, testing, validation, or monitoring. Executive questions should focus on representativeness, permissions, freshness, quality, and whether the dataset reflects the target population.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Deep Learning</h4><p class="aidf-term-def">Deep learning uses multi-layer neural networks to learn complex patterns from large datasets such as text, images, audio, or transactions. It powers many modern breakthroughs in language models, computer vision, and speech recognition.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Feature</h4><p class="aidf-term-def">A feature is an input variable used by a model, such as price, clicks, customer tenure, or text embeddings. Good feature design connects raw data to the business signal the model needs to learn.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Inference</h4><p class="aidf-term-def">Inference is the use of a trained model to generate an output for a new input, such as classifying a customer request or drafting a response. In business systems, inference cost, latency, and reliability often determine whether an AI use case can scale.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Label</h4><p class="aidf-term-def">A label is the known answer used to train or evaluate a supervised learning model, such as default/no default or churn/no churn. Label quality is crucial because a model can only learn what the organization defines and records well.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Machine Learning (ML)</h4><p class="aidf-term-def">Machine learning is a subset of AI in which models learn patterns from data instead of being explicitly programmed with fixed rules. It is the engine behind many prediction, classification, personalization, and anomaly-detection systems.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Model</h4><p class="aidf-term-def">A model is the learned mathematical or computational representation produced by training on data. Executives should ask what the model predicts, how it was trained, and how its performance is monitored in production.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Neural Network</h4><p class="aidf-term-def">A neural network is a model architecture inspired by interconnected nodes that transform inputs through layers. Neural networks are the foundation for deep learning systems in language, vision, speech, and recommendation.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Reinforcement Learning</h4><p class="aidf-term-def">Reinforcement learning trains an agent to choose actions by receiving rewards or penalties from an environment. It is powerful in simulations and control problems, but harder to apply when the real-world environment cannot be safely or repeatedly explored.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Supervised Learning</h4><p class="aidf-term-def">Supervised learning trains models using examples with known labels. It is common in use cases such as credit scoring, fraud detection, churn prediction, and quality inspection.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Training</h4><p class="aidf-term-def">Training is the process of adjusting a model’s parameters so it can perform a task on examples. Strong training depends on relevant data, clear objectives, appropriate evaluation, and safeguards against overfitting or bias.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Transfer Learning</h4><p class="aidf-term-def">Transfer learning reuses knowledge learned from one task or dataset to improve performance on another task. It is a key reason foundation models can be adapted efficiently for enterprise applications.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Core AI</div><h4 class="aidf-term-title">Unsupervised Learning</h4><p class="aidf-term-def">Unsupervised learning finds patterns in data without predefined labels, such as customer segments or clusters of similar documents. It is useful when organizations want discovery, grouping, or anomaly signals rather than direct prediction.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/fundamentals" target="_blank" rel="noopener">Reference &#8599;</a></div>
+      </div>
+    </details>
+    <details class="aidf-cat" open>
+      <summary class="aidf-cat-head"><span class="aidf-cat-name">Generative AI</span><span class="aidf-cat-count">20 terms</span></summary>
+      <div class="aidf-term-grid">
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Agent Orchestration</h4><p class="aidf-term-def">Agent orchestration coordinates multiple model calls, tools, or specialized agents to complete a complex workflow. It is important when tasks require planning, routing, verification, and handoffs across systems.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-are-ai-agents" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Agent2Agent (A2A)</h4><p class="aidf-term-def">A2A is an emerging open protocol for letting AI agents from different vendors and platforms communicate and collaborate on shared tasks. It addresses a key enterprise concern: avoiding lock-in to a single vendor’s agent ecosystem.</p><a class="aidf-term-link" href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Agentic AI</h4><p class="aidf-term-def">Agentic AI refers to AI systems that can plan, coordinate subtasks, use tools, and adapt over multiple steps. It promises productivity gains but requires stronger guardrails, permissions, monitoring, and escalation paths.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-are-ai-agents" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">AI Agent</h4><p class="aidf-term-def">An AI agent is software that uses a model to reason about a goal, choose steps, call tools, and act on behalf of a user or workflow. The key question is not only what it can generate, but what actions it is allowed to take.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Chatbot</h4><p class="aidf-term-def">A chatbot is a conversational interface that responds to user messages through rules, retrieval, AI models, or a combination of these. Modern chatbots increasingly combine LLMs with enterprise data and workflow tools.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Context Window</h4><p class="aidf-term-def">The context window is the maximum amount of input and conversation history a model can use when generating a response. A larger context window helps with long documents, but does not automatically guarantee better reasoning or accuracy.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Diffusion Model</h4><p class="aidf-term-def">A diffusion model generates data by learning to reverse a process that gradually adds noise. It is widely associated with high-quality image generation and other media synthesis tasks.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Fine-Tuning</h4><p class="aidf-term-def">Fine-tuning adapts a pre-trained model using additional examples for a specific task, style, domain, or policy. It can improve consistency, but it requires high-quality data and should not replace retrieval or governance when the issue is missing knowledge.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Foundation Model</h4><p class="aidf-term-def">A foundation model is a large model trained on broad data that can be adapted to many downstream tasks. Its value comes from general-purpose capability, but adoption requires careful tuning, governance, and evaluation.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Generative AI</h4><p class="aidf-term-def">Generative AI creates new content such as text, images, audio, video, code, or structured analysis from learned patterns. It shifts AI from pure prediction toward content creation, workflow assistance, and human productivity augmentation.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Large Language Model (LLM)</h4><p class="aidf-term-def">An LLM is a model trained on large text and code corpora to understand, generate, summarize, translate, or reason over language. LLMs are powerful interfaces to knowledge work, but they still need grounding, evaluation, and controls.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Model Context Protocol (MCP)</h4><p class="aidf-term-def">MCP is an open standard, originated by Anthropic, that lets AI assistants connect to data sources, tools, and enterprise systems through a uniform interface. It is becoming an industry standard adopted by Salesforce, Box, Cisco, and many others to reduce one-off integrations.</p><a class="aidf-term-link" href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Multimodal AI</h4><p class="aidf-term-def">Multimodal AI can process or generate more than one type of data, such as text, image, audio, video, tables, or sensor signals. It is central to enterprise use cases that combine documents, dashboards, calls, diagrams, and real-world observations.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Prompt</h4><p class="aidf-term-def">A prompt is the instruction, question, data, or context given to a generative AI system. Better prompts clarify role, task, constraints, examples, output format, and evaluation criteria.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Prompt Engineering</h4><p class="aidf-term-def">Prompt engineering is the practice of designing instructions and context so a model produces useful outputs. In enterprise settings, prompts often become reusable workflow assets embedded in products, copilots, or agent systems.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Small Language Model (SLM)</h4><p class="aidf-term-def">An SLM is a smaller language model designed for lower cost, lower latency, privacy-sensitive deployment, or task-specific performance. SLMs can be attractive when an enterprise needs reliable execution rather than maximum generality.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Token</h4><p class="aidf-term-def">A token is a unit of text or data that a language model processes, often a word fragment rather than a full word. Token limits influence context length, cost, speed, and how much information a model can consider at once.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Tool Use / Function Calling</h4><p class="aidf-term-def">Tool use lets an AI system call external software, databases, calculators, APIs, or workflow actions in a structured way. This turns a model from a passive text generator into a controlled interface for enterprise execution.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Transformer</h4><p class="aidf-term-def">A transformer is a neural network architecture that uses attention mechanisms to process sequences such as text or code. Transformers are the backbone of most modern large language models and many multimodal AI systems.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Generative AI</div><h4 class="aidf-term-title">Vibe Coding</h4><p class="aidf-term-def">Vibe coding describes a workflow where developers describe intent in natural language and let AI tools generate or modify code, with humans steering rather than writing line by line. It is reshaping software engineering productivity and team composition.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+      </div>
+    </details>
+    <details class="aidf-cat">
+      <summary class="aidf-cat-head"><span class="aidf-cat-name">Data &amp; Knowledge</span><span class="aidf-cat-count">18 terms</span></summary>
+      <div class="aidf-term-grid">
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">A/B Testing</h4><p class="aidf-term-def">A/B testing compares two versions of a product, message, model, or workflow using randomized exposure. It is a core method for measuring whether AI changes actually improve user or business outcomes.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Data as a Strategic Asset</h4><p class="aidf-term-def">Data becomes strategic when it improves decisions, differentiates products, compounds learning, or creates defensible advantage. Treating data as an asset requires ownership, governance, quality management, access design, and value measurement.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Data Governance</h4><p class="aidf-term-def">Data governance defines decision rights, standards, controls, lineage, privacy, quality, and accountability for data. AI governance is weak when data governance is weak.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Data Lakehouse</h4><p class="aidf-term-def">A data lakehouse combines flexible data lake storage with warehouse-style management and analytics capabilities. It is often used to support AI teams that need both raw data and governed, queryable datasets.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Data Lineage</h4><p class="aidf-term-def">Data lineage tracks where data came from, how it changed, and where it is used. It is essential for auditability, debugging, regulatory review, and understanding AI outputs.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Data Pipeline / ETL</h4><p class="aidf-term-def">A data pipeline moves, transforms, cleans, and delivers data for analytics or AI systems. ETL stands for extract, transform, load, and is often a hidden determinant of AI project success.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Data Quality</h4><p class="aidf-term-def">Data quality refers to whether data is accurate, complete, consistent, timely, relevant, and fit for purpose. Poor data quality can create misleading AI outputs even when the model architecture is advanced.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Decision Intelligence</h4><p class="aidf-term-def">Decision intelligence combines data, models, workflows, and human judgment to improve decisions. It asks not only what the model predicts, but how the prediction changes action and accountability.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Embedding</h4><p class="aidf-term-def">An embedding is a numerical representation of text, images, users, products, or documents in a vector space. Similar meanings or objects tend to be close together, enabling semantic search, clustering, recommendation, and retrieval.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Experimentation</h4><p class="aidf-term-def">Experimentation is the disciplined testing of hypotheses using controlled comparisons, pilots, or randomized trials. AI leaders need experimentation to separate real value from demos and hype.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Knowledge Graph</h4><p class="aidf-term-def">A knowledge graph represents entities and relationships, such as companies, products, executives, suppliers, and risks. It can improve search, reasoning, recommendation, and explainability by making relationships explicit.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Metadata</h4><p class="aidf-term-def">Metadata is data about data, such as source, owner, format, permissions, lineage, and update frequency. It helps teams discover, trust, govern, and reuse data assets for AI.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Predictive Analytics</h4><p class="aidf-term-def">Predictive analytics uses data and models to estimate what is likely to happen, such as churn, demand, risk, or maintenance failure. Its value depends on whether predictions are actionable in a business process.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Prescriptive Analytics</h4><p class="aidf-term-def">Prescriptive analytics recommends actions based on predicted outcomes, constraints, and objectives. It moves analytics from insight toward decision support and operational optimization.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Retrieval-Augmented Generation (RAG)</h4><p class="aidf-term-def">RAG connects a generative model to external knowledge sources so responses can be grounded in documents, databases, or current information. It is a common architecture for enterprise chatbots and knowledge assistants because it reduces reliance on model memory alone.</p><a class="aidf-term-link" href="https://www.ibm.com/think/topics/retrieval-augmented-generation" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Semantic Search</h4><p class="aidf-term-def">Semantic search retrieves information based on meaning rather than exact keyword matching. It helps users find relevant documents, policies, cases, or product information even when they use different wording.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary/generative" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Synthetic Data</h4><p class="aidf-term-def">Synthetic data is artificially generated data designed to resemble real data while supporting testing, training, privacy, or rare-case simulation. It is useful but must be validated carefully because synthetic patterns can mislead models.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Data &amp; Knowledge</div><h4 class="aidf-term-title">Vector Database</h4><p class="aidf-term-def">A vector database stores and searches embeddings efficiently, usually by similarity. It is often used in retrieval-augmented generation, document search, recommendation, and knowledge discovery systems.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+      </div>
+    </details>
+    <details class="aidf-cat">
+      <summary class="aidf-cat-head"><span class="aidf-cat-name">Trust &amp; Risk</span><span class="aidf-cat-count">23 terms</span></summary>
+      <div class="aidf-term-grid">
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Accountability</h4><p class="aidf-term-def">Accountability means identifiable people or teams are responsible for AI design, deployment, monitoring, and consequences. It prevents responsibility from disappearing behind the model or vendor.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">AI Ethics</h4><p class="aidf-term-def">AI ethics examines whether AI systems are designed and used in ways that respect human values, rights, fairness, and societal impact. It becomes practical when translated into product requirements, review processes, and measurable controls.</p><a class="aidf-term-link" href="https://ai.google/principles/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">AI Governance</h4><p class="aidf-term-def">AI governance is the structure of policies, roles, processes, controls, and oversight used to manage AI benefits and risks. It should cover data, models, vendors, use cases, monitoring, escalation, and accountability.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">AI Safety</h4><p class="aidf-term-def">AI safety focuses on preventing harmful, unreliable, or unintended behavior from AI systems. In enterprises, safety includes technical safeguards, policy constraints, incident response, and human escalation.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Alignment</h4><p class="aidf-term-def">Alignment refers to making AI systems behave according to intended goals, constraints, and human values. In business deployment, alignment includes matching model behavior to company policy, user needs, and risk appetite.</p><a class="aidf-term-link" href="https://cloud.google.com/responsible-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Bias</h4><p class="aidf-term-def">Bias is a systematic tendency in data, design, or model behavior that can produce distorted or unfair outcomes. Bias can enter through historical data, measurement choices, labels, sampling, objectives, or deployment context.</p><a class="aidf-term-link" href="https://cloud.google.com/responsible-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Content Credentials (C2PA)</h4><p class="aidf-term-def">C2PA is an open technical standard for cryptographically signing media with origin and edit history, supported by Adobe, Microsoft, and many publishers. It is becoming a key tool for verifying authenticity in an era of generative content.</p><a class="aidf-term-link" href="https://c2pa.org/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Differential Privacy</h4><p class="aidf-term-def">Differential privacy is a mathematical approach that limits what can be learned about any individual from a dataset or model output. It is one tool for balancing data utility with privacy protection.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">EU AI Act</h4><p class="aidf-term-def">The EU AI Act is a risk-tiered regulation classifying AI systems as unacceptable, high-risk, limited-risk, or minimal-risk, with corresponding obligations. It has extraterritorial reach, affecting any organization deploying AI services to EU users.</p><a class="aidf-term-link" href="https://artificialintelligence-act.eu/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Explainability</h4><p class="aidf-term-def">Explainability is the ability to provide understandable reasons for an AI output or behavior. The right explanation depends on the audience: user, manager, engineer, regulator, or affected individual.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Fairness</h4><p class="aidf-term-def">Fairness concerns whether an AI system treats individuals or groups appropriately under the context and purpose of use. It often requires both quantitative metrics and human judgment about acceptable trade-offs.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Grounding</h4><p class="aidf-term-def">Grounding means tying model outputs to reliable source material, tools, or verified data. It helps reduce hallucination risk and gives users a basis for checking important claims.</p><a class="aidf-term-link" href="https://research.ibm.com/blog/retrieval-augmented-generation-RAG" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Guardrails</h4><p class="aidf-term-def">Guardrails are technical and procedural controls that constrain AI behavior, such as policy filters, retrieval boundaries, validation checks, permissions, and human review. They reduce risk but do not eliminate the need for evaluation and monitoring.</p><a class="aidf-term-link" href="https://cloud.google.com/responsible-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Hallucination</h4><p class="aidf-term-def">A hallucination is an AI-generated statement that sounds plausible but is false, unsupported, or not grounded in the provided sources. Hallucinations are especially risky in legal, financial, medical, compliance, and customer-facing settings.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Model Risk Management</h4><p class="aidf-term-def">Model risk management identifies, assesses, controls, and monitors risks arising from model errors, misuse, drift, or inappropriate assumptions. For AI, it must include both statistical performance and sociotechnical impact.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">NIST AI RMF</h4><p class="aidf-term-def">The NIST AI Risk Management Framework is a voluntary US standard for governing, mapping, measuring, and managing AI risks. It is widely referenced by enterprises and is increasingly used as the practical baseline for responsible-AI programs.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Privacy</h4><p class="aidf-term-def">Privacy in AI concerns how personal or sensitive information is collected, used, stored, inferred, shared, and protected. AI systems can create privacy risks even when they use derived features or generated outputs.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Red Teaming</h4><p class="aidf-term-def">Red teaming tests an AI system by deliberately probing for failures, misuse, unsafe outputs, leakage, or security weaknesses. It should be part of pre-launch review and ongoing monitoring for high-impact systems.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Responsible AI</h4><p class="aidf-term-def">Responsible AI is the practice of designing, building, deploying, and governing AI in ways that are safe, fair, accountable, privacy-aware, and beneficial. It is an operating discipline rather than a public-relations statement.</p><a class="aidf-term-link" href="https://cloud.google.com/responsible-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Robustness</h4><p class="aidf-term-def">Robustness is the ability of an AI system to maintain acceptable performance under noise, distribution shifts, adversarial inputs, or changing conditions. It is a key attribute for systems used in dynamic business environments.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Transparency</h4><p class="aidf-term-def">Transparency means relevant stakeholders can understand that AI is being used, what it is intended to do, and how key decisions are made or reviewed. Transparency supports trust, accountability, and user choice.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Trustworthy AI</h4><p class="aidf-term-def">Trustworthy AI emphasizes characteristics such as validity, reliability, safety, security, resilience, accountability, transparency, explainability, privacy, and fairness. These qualities must be engineered and governed throughout the lifecycle.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Trust &amp; Risk</div><h4 class="aidf-term-title">Watermarking (SynthID)</h4><p class="aidf-term-def">Watermarking embeds invisible signals into AI-generated text, images, audio, or video so that they can later be identified as machine-generated. Google’s SynthID is one prominent example, used to support content provenance and combat misinformation.</p><a class="aidf-term-link" href="https://deepmind.google/science/synthid/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+      </div>
+    </details>
+    <details class="aidf-cat">
+      <summary class="aidf-cat-head"><span class="aidf-cat-name">Cybersecurity</span><span class="aidf-cat-count">14 terms</span></summary>
+      <div class="aidf-term-grid">
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Access Control</h4><p class="aidf-term-def">Access control restricts who or what can view data, call tools, run models, or approve AI actions. It is especially important when LLMs are connected to internal documents, customer records, or workflow systems.</p><a class="aidf-term-link" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Adversarial Machine Learning</h4><p class="aidf-term-def">Adversarial machine learning studies attacks that manipulate inputs, data, or models to cause incorrect behavior. Examples include subtly altered images, poisoned data, evasion attacks, and prompt-based manipulation.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Cyber Resilience</h4><p class="aidf-term-def">Cyber resilience is the ability to withstand, recover from, and adapt to cyber disruptions while maintaining essential operations. AI can strengthen resilience through detection and automation, but it can also expand the attack surface.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Data Loss Prevention (DLP)</h4><p class="aidf-term-def">DLP refers to controls that detect or prevent sensitive information from leaving approved systems or being exposed inappropriately. In AI workflows, DLP must cover prompts, retrieved documents, outputs, logs, and integrations.</p><a class="aidf-term-link" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Incident Response</h4><p class="aidf-term-def">Incident response is the process for detecting, triaging, containing, communicating, and learning from AI or cybersecurity incidents. AI deployments should define escalation paths before failures occur.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Insecure Output Handling</h4><p class="aidf-term-def">Insecure output handling occurs when AI-generated outputs are trusted too much and passed into downstream systems without validation. This can create software, security, compliance, or business-process failures.</p><a class="aidf-term-link" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Jailbreaking</h4><p class="aidf-term-def">Jailbreaking is an attempt to bypass a model’s safety or policy constraints through adversarial prompting. It is related to prompt injection but usually targets the model’s refusal or behavior rules directly.</p><a class="aidf-term-link" href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Model Supply Chain</h4><p class="aidf-term-def">The model supply chain includes datasets, pre-trained models, libraries, plugins, APIs, infrastructure, vendors, and deployment tools. Weaknesses anywhere in the chain can create security, reliability, or compliance risks.</p><a class="aidf-term-link" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">OWASP Top 10 for LLMs</h4><p class="aidf-term-def">OWASP’s Top 10 for Large Language Model Applications enumerates the most critical security risks specific to LLM-powered systems. It is the most widely referenced practitioner checklist for AI application security reviews.</p><a class="aidf-term-link" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Prompt Injection</h4><p class="aidf-term-def">Prompt injection occurs when malicious or conflicting instructions are inserted into inputs so an LLM follows the attacker’s goal instead of the system’s intended rules. It is a major security issue for AI systems that read documents, browse content, or use tools.</p><a class="aidf-term-link" href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">SAIF (Secure AI Framework)</h4><p class="aidf-term-def">SAIF is Google’s open conceptual framework for securing AI systems across the lifecycle, addressing model, data, and operational risks. It is one of the most widely cited industry frameworks for AI security alongside NIST and OWASP guidance.</p><a class="aidf-term-link" href="https://safety.google/cybersecurity-advancements/saif/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Sensitive Information Disclosure</h4><p class="aidf-term-def">Sensitive information disclosure occurs when an AI system reveals private, confidential, or restricted information through its output or logs. Controls include access management, data minimization, filtering, monitoring, and careful retrieval design.</p><a class="aidf-term-link" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Training Data Poisoning</h4><p class="aidf-term-def">Training data poisoning happens when corrupted or malicious data enters a model’s training or tuning process. The result can be biased behavior, hidden vulnerabilities, or unreliable outputs.</p><a class="aidf-term-link" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Cybersecurity</div><h4 class="aidf-term-title">Zero Trust</h4><p class="aidf-term-def">Zero trust is a security approach that assumes no user, device, model, or system should be trusted by default. AI systems need zero-trust thinking because they often connect data, tools, identities, and automated actions.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+      </div>
+    </details>
+    <details class="aidf-cat">
+      <summary class="aidf-cat-head"><span class="aidf-cat-name">Strategy</span><span class="aidf-cat-count">28 terms</span></summary>
+      <div class="aidf-term-grid">
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Agentic Work Units</h4><p class="aidf-term-def">A Salesforce-introduced metric that counts discrete tasks completed by an AI agent (a record updated, a workflow triggered, a decision made). It reframes value from seats licensed to work performed — a potentially fundamental shift in SaaS pricing.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">AI Index Report</h4><p class="aidf-term-def">The Stanford HAI AI Index is an annual open data report tracking AI research, investment, adoption, ethics, and policy worldwide. It is the most widely cited single reference for executives benchmarking the state of AI.</p><a class="aidf-term-link" href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">AI Moat</h4><p class="aidf-term-def">An AI moat is a defensible competitive advantage that AI alone cannot easily replicate — usually proprietary data, distribution, workflow integration, or regulatory expertise. Foundation models are commodifying; the moat lives elsewhere.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">AI Operating Model</h4><p class="aidf-term-def">An AI operating model defines how an organization funds, builds, governs, deploys, monitors, and scales AI. It clarifies the roles of business teams, data teams, risk teams, product owners, and senior leadership.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">AI ROI</h4><p class="aidf-term-def">AI ROI measures whether an AI initiative creates value net of data, infrastructure, talent, risk, adoption, and maintenance costs. Because many benefits are process-level, ROI should include productivity, quality, speed, risk reduction, and revenue impact.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">AI Strategy</h4><p class="aidf-term-def">AI strategy connects business goals to AI-enabled capabilities, use-case priorities, data assets, talent, platforms, and governance. A strong AI strategy says what not to do as clearly as what to build.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Blitzscaling</h4><p class="aidf-term-def">Coined by Reid Hoffman, blitzscaling is the deliberate prioritization of speed over efficiency to capture a market before competitors. It works best in winner-take-most markets with strong network effects, but can destroy capital outside that context.</p><a class="aidf-term-link" href="https://a16z.com/how-venture-capital-works/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Build–Buy–Partner Decision</h4><p class="aidf-term-def">A build–buy–partner decision determines whether to develop AI internally, purchase a vendor solution, or collaborate with startups and platforms. The right choice depends on strategic differentiation, data sensitivity, speed, talent, and integration complexity.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Corporate Innovation Model</h4><p class="aidf-term-def">A corporate innovation model defines how a large organization explores, tests, funds, and scales new ideas. AI raises the importance of fast experimentation, responsible controls, external partnerships, and executive sponsorship.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Corporate Venture Capital (CVC)</h4><p class="aidf-term-def">CVC is venture investing by a corporation’s strategic arm, often blending financial returns with access to innovation, partnerships, or future acquisitions. Piva (Petronas-anchored) and GV (Google) are prominent examples.</p><a class="aidf-term-link" href="https://a16z.com/how-venture-capital-works/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Crossing the Chasm</h4><p class="aidf-term-def">Geoffrey Moore’s framework describes the gap between early adopters and the mainstream market. Many AI products are stuck in the chasm — beloved by tech early adopters but not yet trusted by mainstream enterprise buyers.</p><a class="aidf-term-link" href="https://en.wikipedia.org/wiki/Crossing_the_Chasm" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Data Network Effects</h4><p class="aidf-term-def">Data network effects occur when a product or service improves measurably as more users generate more data, creating a self-reinforcing advantage. They are one of the strongest defensible moats in AI, but require careful design to ensure data actually flows back into model improvement.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Day 1 Mindset</h4><p class="aidf-term-def">Coined by Jeff Bezos, Day 1 describes the mentality of an early-stage company — customer-obsessed, fast-moving, willing to disagree and commit. Day 2, by contrast, is stasis, then irrelevance, then death.</p><a class="aidf-term-link" href="https://www.aboutamazon.com/about-us/leadership-principles" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Ecosystem</h4><p class="aidf-term-def">An ecosystem is the network of firms, universities, investors, platforms, regulators, customers, and talent that enables innovation. Silicon Valley’s AI ecosystem is powerful because capital, ideas, infrastructure, and customers interact quickly.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Lean Startup / MVP</h4><p class="aidf-term-def">The Lean Startup methodology, originated by Eric Ries, advocates building a minimum viable product (MVP), measuring real user response, and iterating. For AI products, MVP thinking helps avoid over-engineered systems that solve the wrong problem.</p><a class="aidf-term-link" href="https://theleanstartup.com/principles" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">OKRs</h4><p class="aidf-term-def">Objectives and Key Results is a goal-setting framework popularized by Intel and Google, pairing ambitious objectives with measurable key results. For AI initiatives, OKRs help keep teams accountable to outcomes rather than activity.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Platform Strategy</h4><p class="aidf-term-def">Platform strategy uses shared technology, data, APIs, governance, and developer tools to support many AI products or use cases. It can increase reuse and speed, but requires clear ownership and standards.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Product-Led Growth (PLG)</h4><p class="aidf-term-def">PLG is a go-to-market model where the product itself drives acquisition, expansion, and retention — typified by free trials, self-serve onboarding, and viral team adoption. Many AI tools (GitHub Copilot, Cursor, Claude) follow this pattern.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Product-Market Fit</h4><p class="aidf-term-def">Product-market fit occurs when a product solves a meaningful customer problem well enough to generate strong adoption and retention. For AI products, fit also depends on trust, explainability, workflow integration, and reliable performance.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">SAFE Note</h4><p class="aidf-term-def">A Simple Agreement for Future Equity, originated by Y Combinator, lets investors put money into a startup in exchange for equity at a future priced round. SAFEs have become the standard early-stage instrument in Silicon Valley.</p><a class="aidf-term-link" href="https://www.ycombinator.com/documents" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Series A / B / C</h4><p class="aidf-term-def">Series A, B, C and beyond denote successive rounds of priced equity financing as a startup scales — typically Series A for product-market fit, B for scaling, and C+ for market expansion. Each round implies different investor expectations and governance.</p><a class="aidf-term-link" href="https://a16z.com/how-venture-capital-works/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Sovereign AI</h4><p class="aidf-term-def">Sovereign AI refers to a nation’s ability to develop and operate AI using domestic infrastructure, data, models, and talent. It is rising in policy importance as countries view AI capability as strategic infrastructure rather than imported software.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Startup Scaling</h4><p class="aidf-term-def">Startup scaling is the transition from prototype or early traction to repeatable growth, operations, sales, hiring, and governance. AI startups must scale not only software, but also data pipelines, model operations, compliance, and customer trust.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Term Sheet</h4><p class="aidf-term-def">A term sheet is the non-binding agreement between a startup and an investor outlining valuation, investment amount, governance rights, and key economic provisions. It sets the terms before legal documents are drafted.</p><a class="aidf-term-link" href="https://a16z.com/how-venture-capital-works/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Two-Pizza Teams</h4><p class="aidf-term-def">A two-pizza team is small enough that two pizzas can feed it — Amazon’s heuristic for autonomous, single-threaded teams that can move fast without coordination overhead. It is a foundational concept for scaling innovation in large enterprises.</p><a class="aidf-term-link" href="https://www.aboutamazon.com/about-us/leadership-principles" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Use-Case Portfolio</h4><p class="aidf-term-def">A use-case portfolio is a prioritized set of AI opportunities assessed by impact, feasibility, risk, data readiness, and scalability. It helps executives avoid scattered experiments and focus on repeatable business value.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Venture Building</h4><p class="aidf-term-def">Venture building is the structured creation or incubation of new ventures, products, or business models. In AI, it often combines domain problems, proprietary data, rapid prototyping, and ecosystem partnerships.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Strategy</div><h4 class="aidf-term-title">Working Backwards</h4><p class="aidf-term-def">Working Backwards is Amazon’s product-development method that begins with a written press release and FAQ describing the customer outcome, then engineers backwards to build it. It enforces customer obsession and clarity before resources are committed.</p><a class="aidf-term-link" href="https://www.workingbackwards.com/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+      </div>
+    </details>
+    <details class="aidf-cat">
+      <summary class="aidf-cat-head"><span class="aidf-cat-name">Organization &amp; People</span><span class="aidf-cat-count">10 terms</span></summary>
+      <div class="aidf-term-grid">
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">AI Literacy</h4><p class="aidf-term-def">AI literacy is the practical ability to understand what AI can do, where it fails, how to use it safely, and how to challenge outputs. It is a workforce capability, not just a technical training topic.</p><a class="aidf-term-link" href="https://cloud.google.com/responsible-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">Automation Bias</h4><p class="aidf-term-def">Automation bias is the human tendency to over-trust AI outputs, especially when they sound confident or are well-formatted. Mitigations include training, friction-by-design, audit trails, and explicit decision rights.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">Automation vs. Augmentation</h4><p class="aidf-term-def">Automation replaces parts of a task, while augmentation helps people perform the task better, faster, or more consistently. Leadership teams should decide explicitly which mode they want for each AI use case.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">Centaur Model</h4><p class="aidf-term-def">Originating in chess, the centaur model describes human-plus-AI teams that outperform either humans or AI working alone. It is a useful frame for designing knowledge work where judgment, ethics, or context matter alongside scale.</p><a class="aidf-term-link" href="https://hbr.org/2018/07/collaborative-intelligence-humans-and-ai-are-joining-forces" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">Change Management</h4><p class="aidf-term-def">Change management is the structured process of helping people adopt new ways of working. For AI transformation, it includes incentives, training, process redesign, communication, and trust-building.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">Copilot</h4><p class="aidf-term-def">A copilot is an AI assistant embedded into a workflow to help users draft, analyze, retrieve, summarize, or execute tasks. The best copilots augment human judgment instead of hiding the decision process.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">Human-in-the-Loop</h4><p class="aidf-term-def">Human-in-the-loop design keeps people involved in review, approval, correction, or escalation. It is especially important for high-stakes AI decisions, uncertain outputs, and responsible deployment.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">Human–AI Collaboration</h4><p class="aidf-term-def">Human–AI collaboration describes work designs where humans and AI systems share tasks based on their comparative strengths. Strong collaboration requires role clarity, trust calibration, training, and feedback loops.</p><a class="aidf-term-link" href="https://airc.nist.gov/glossary/" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">Pilot Purgatory</h4><p class="aidf-term-def">Pilot purgatory describes the common state where AI proofs-of-concept demo well but never reach scaled production. Causes include weak data foundations, missing change management, unclear ownership, and insufficient ROI accountability.</p><a class="aidf-term-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Organization &amp; People</div><h4 class="aidf-term-title">Workforce Upskilling</h4><p class="aidf-term-def">Workforce upskilling prepares employees to use AI tools, redesign workflows, and supervise AI-enabled decisions. It should combine conceptual understanding, hands-on practice, governance awareness, and role-specific use cases.</p><a class="aidf-term-link" href="https://cloud.google.com/responsible-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+      </div>
+    </details>
+    <details class="aidf-cat">
+      <summary class="aidf-cat-head"><span class="aidf-cat-name">Infrastructure &amp; Ops</span><span class="aidf-cat-count">18 terms</span></summary>
+      <div class="aidf-term-grid">
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">API</h4><p class="aidf-term-def">An API is an interface that lets software systems request data or actions from one another. AI systems commonly use APIs to access models, enterprise data, workflow tools, and third-party services.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Benchmark</h4><p class="aidf-term-def">A benchmark is a standardized task or dataset used to compare model performance. Benchmarks are useful signals, but they may not reflect enterprise context, workflow fit, or risk tolerance.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Cloud AI</h4><p class="aidf-term-def">Cloud AI refers to AI tools, models, infrastructure, and managed services delivered through cloud platforms. It can accelerate adoption but requires attention to data residency, cost control, security, and vendor dependency.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Cost-to-Serve</h4><p class="aidf-term-def">Cost-to-serve is the total cost of delivering an AI output, including model inference, retrieval, storage, engineering, monitoring, and human review. It is essential for judging whether an AI service can scale profitably.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-mlops" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Data Drift</h4><p class="aidf-term-def">Data drift occurs when the input data distribution changes relative to the data used to train or validate the model. Monitoring data drift helps detect when a model may need review, recalibration, or retraining.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-mlops" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Edge AI</h4><p class="aidf-term-def">Edge AI runs models close to where data is generated, such as on cameras, vehicles, phones, or industrial devices. It can reduce latency, bandwidth use, and privacy exposure, but may constrain model size and update frequency.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Enterprise Integration</h4><p class="aidf-term-def">Enterprise integration connects AI tools with existing systems such as CRM, ERP, document management, identity, data warehouses, and workflow platforms. Integration is often the gap between a compelling demo and real business impact.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">GPU / AI Accelerator</h4><p class="aidf-term-def">A GPU or AI accelerator is specialized hardware that speeds up model training and inference. Hardware availability, cost, and energy use shape the economics of large-scale AI.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Headless Deployment</h4><p class="aidf-term-def">Headless deployment exposes a platform’s data and functions purely through APIs and protocols, with no traditional user interface. As AI agents become primary users of enterprise systems, headless architectures are becoming central to platforms like Salesforce.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Latency</h4><p class="aidf-term-def">Latency is the time it takes for a system to respond to a user or application request. AI systems with high latency may fail in customer service, real-time operations, trading, cybersecurity, or embedded product workflows.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-mlops" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">LLMOps</h4><p class="aidf-term-def">LLMOps extends MLOps practices to large language model applications, including prompt/version management, retrieval pipelines, evaluations, guardrails, cost control, and monitoring. It is critical for keeping generative AI systems reliable after launch.</p><a class="aidf-term-link" href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">MLOps</h4><p class="aidf-term-def">MLOps applies engineering, automation, monitoring, and governance practices to the machine learning lifecycle. It helps organizations move from prototypes to reliable production systems.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-mlops" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Model Drift</h4><p class="aidf-term-def">Model drift occurs when the relationship between inputs and outcomes changes after deployment, reducing performance. It can happen because customers, markets, products, policies, or external conditions evolve.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-mlops" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Model Evaluation</h4><p class="aidf-term-def">Model evaluation measures whether an AI system performs well enough for its intended use. For generative AI, evaluation should include accuracy, usefulness, safety, robustness, latency, cost, and human review.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Model Monitoring</h4><p class="aidf-term-def">Model monitoring tracks performance, drift, errors, latency, cost, user feedback, and risk indicators after deployment. Without monitoring, an AI system can silently degrade or create unintended harm.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-mlops" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">Model Serving</h4><p class="aidf-term-def">Model serving is the process of making a trained model available to applications through APIs or embedded systems. Serving decisions affect latency, cost, reliability, monitoring, and user experience.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">SaaS</h4><p class="aidf-term-def">Software as a Service is software delivered through the cloud and accessed through subscriptions or usage-based models. Many AI capabilities are adopted through SaaS platforms before they become custom enterprise systems.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Infrastructure &amp; Ops</div><h4 class="aidf-term-title">TPU</h4><p class="aidf-term-def">A TPU is a tensor processing unit, a specialized AI accelerator designed for machine learning workloads. It illustrates how AI performance increasingly depends on both software and purpose-built hardware.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+      </div>
+    </details>
+    <details class="aidf-cat">
+      <summary class="aidf-cat-head"><span class="aidf-cat-name">Product &amp; Customer</span><span class="aidf-cat-count">11 terms</span></summary>
+      <div class="aidf-term-grid">
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Computer Vision</h4><p class="aidf-term-def">Computer vision enables systems to interpret images or video, such as detecting objects, reading scenes, or monitoring activity. It is important for smart cities, manufacturing, healthcare, retail, and security-related analytics.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Customer 360</h4><p class="aidf-term-def">Customer 360 is an integrated view of customer identity, behavior, transactions, preferences, and service history. AI can make it actionable through prediction, segmentation, next-best-action, and personalized service.</p><a class="aidf-term-link" href="https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-glossary?view=azureml-api-2" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Digital Twin</h4><p class="aidf-term-def">A digital twin is a virtual representation of a physical system, process, asset, or environment. AI can use digital twins for simulation, optimization, predictive maintenance, and scenario planning.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Image Generation</h4><p class="aidf-term-def">Image generation uses generative models to create or modify visual content from text, images, or other inputs. Business uses include creative workflows, design exploration, advertising, training simulations, and rapid prototyping.</p><a class="aidf-term-link" href="https://cloud.google.com/discover/what-is-generative-ai" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Internet of Things (IoT)</h4><p class="aidf-term-def">IoT refers to connected devices and sensors that collect and exchange data from the physical world. AI turns IoT data into predictions, alerts, automation, and real-time operational intelligence.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Natural Language Processing (NLP)</h4><p class="aidf-term-def">NLP is the AI field focused on understanding, generating, and working with human language. It supports summarization, search, translation, sentiment analysis, chatbots, and document intelligence.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Next Best Action</h4><p class="aidf-term-def">Next best action is an AI-supported recommendation for the most appropriate response, offer, message, or intervention for a customer. It should incorporate business rules, customer value, risk, fairness, and timing.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Optical Character Recognition (OCR)</h4><p class="aidf-term-def">OCR converts text in images, scans, or PDFs into machine-readable text. It is often the first step in document automation, invoice processing, compliance review, and archival search.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Personalization</h4><p class="aidf-term-def">Personalization uses data and models to tailor experiences, content, or offers to a user or segment. It can improve engagement, but must be balanced with privacy, transparency, and fairness.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Recommendation System</h4><p class="aidf-term-def">A recommendation system predicts which items, content, products, or actions are most relevant to a user. It is central to personalization strategies in streaming, commerce, advertising, and enterprise knowledge work.</p><a class="aidf-term-link" href="https://developers.google.com/machine-learning/glossary" target="_blank" rel="noopener">Reference &#8599;</a></div>
+          <div class="aidf-term-card"><div class="aidf-term-cat">Product &amp; Customer</div><h4 class="aidf-term-title">Speech Recognition</h4><p class="aidf-term-def">Speech recognition converts spoken language into text that software can analyze or act on. It is a foundation for meeting assistants, call-center analytics, accessibility tools, and voice interfaces.</p><a class="aidf-term-link" href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-artificial-intelligence" target="_blank" rel="noopener">Reference &#8599;</a></div>
+      </div>
+    </details>
+  </section>
+
+</div>

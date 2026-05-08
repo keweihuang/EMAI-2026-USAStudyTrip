@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plug and Play Briefing | NUS-AIDF Silicon Valley Study Trip</title>
+  <style>
+    :root {
+      --nus-blue: #003D7C;
+      --nus-orange: #EF7C00;
+      --aidf-navy: #071D33;
+      --ink: #0B1220;
+      --slate: #5A6575;
+      --champagne: #F8F1E5;
+      --ivory: #FFFDF8;
+      --gold: #C8A75D;
+      --pnp-red: #D7232A;
+      --mist: #EAF0F7;
+      --line: rgba(7, 29, 51, 0.14);
+      --shadow: 0 26px 70px rgba(7, 29, 51, 0.16);
+      --soft-shadow: 0 16px 38px rgba(7, 29, 51, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 3%, rgba(239, 124, 0, 0.16), transparent 28%),
+        radial-gradient(circle at 92% 0%, rgba(0, 61, 124, 0.18), transparent 34%),
+        radial-gradient(circle at 70% 82%, rgba(215, 35, 42, 0.11), transparent 32%),
+        linear-gradient(135deg, #fffaf1 0%, #f4efe6 48%, #edf3f9 100%);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 32px 0 76px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 22px;
+      border-radius: 28px;
+      background: rgba(255, 253, 248, 0.76);
+      border: 1px solid rgba(255,255,255,0.74);
+      box-shadow: var(--soft-shadow);
+      backdrop-filter: blur(18px);
+      position: sticky;
+      top: 16px;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 250px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 17px;
+      background: linear-gradient(135deg, var(--nus-blue), var(--aidf-navy));
+      position: relative;
+      box-shadow: 0 15px 28px rgba(0, 61, 124, 0.24);
+    }
+
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      right: -7px;
+      bottom: -7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pnp-red), var(--nus-orange));
+      border: 4px solid var(--ivory);
+    }
+
+    .brand-kicker {
+      color: var(--nus-orange);
+      font-size: 11px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      color: var(--aidf-navy);
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 9px;
+    }
+
+    .nav a, .print-btn {
+      border: 1px solid rgba(7, 29, 51, 0.12);
+      color: var(--aidf-navy);
+      background: rgba(255,255,255,0.62);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .nav a:hover, .print-btn:hover {
+      transform: translateY(-1px);
+      background: #fff;
+      border-color: rgba(239, 124, 0, 0.56);
+    }
+
+    .hero {
+      margin-top: 28px;
+      border-radius: 40px;
+      overflow: hidden;
+      color: #fff;
+      background:
+        linear-gradient(118deg, rgba(7,29,51,0.99) 0%, rgba(0,61,124,0.95) 56%, rgba(215,35,42,0.82) 124%);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.22);
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(120deg, rgba(0,0,0,.70), transparent 74%);
+    }
+
+    .hero::after {
+      content: "PNP";
+      position: absolute;
+      right: -22px;
+      bottom: -42px;
+      color: rgba(255,255,255,0.055);
+      font-size: clamp(150px, 22vw, 320px);
+      font-weight: 950;
+      letter-spacing: -0.12em;
+      line-height: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: clamp(42px, 7vw, 76px);
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 42px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 17px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 7.4vw, 88px);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+      max-width: 820px;
+    }
+
+    .hero-copy {
+      margin: 24px 0 0;
+      max-width: 760px;
+      color: rgba(255,255,255,0.78);
+      font-size: clamp(16px, 2vw, 19px);
+    }
+
+    .hero-card {
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(16px);
+    }
+
+    .session-detail {
+      display: grid;
+      gap: 12px;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .detail-row:last-child { border-bottom: none; }
+
+    .detail-label {
+      color: rgba(255,255,255,0.54);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .detail-value {
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 34px;
+      background: rgba(255, 253, 248, 0.78);
+      border: 1px solid rgba(255,255,255,0.74);
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .section-header {
+      padding: 30px 30px 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .section h2 {
+      margin: 0;
+      color: var(--aidf-navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(29px, 4.2vw, 44px);
+      line-height: 1.03;
+      letter-spacing: -0.045em;
+    }
+
+    .section-subtitle {
+      margin: 10px 0 0;
+      max-width: 790px;
+      color: var(--slate);
+      font-size: 15px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(0,61,124,0.14);
+      background: rgba(0,61,124,0.055);
+      color: var(--nus-blue);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 26px 30px 32px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      padding: 26px 30px 32px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.66));
+      border: 1px solid var(--line);
+      padding: 22px;
+      box-shadow: 0 12px 28px rgba(7,29,51,0.07);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--nus-blue), var(--nus-orange), var(--pnp-red));
+    }
+
+    .card-kicker {
+      color: var(--nus-orange);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--aidf-navy);
+      font-size: 21px;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+    .card p, .card li {
+      margin: 0;
+      color: #303B4C;
+      font-size: 14px;
+    }
+
+    .card ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .metric-board {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      padding: 26px 30px 0;
+    }
+
+    .metric {
+      border-radius: 24px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(7,29,51,0.96), rgba(0,61,124,0.92));
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(239,124,0,0.20);
+      right: -24px;
+      top: -24px;
+    }
+
+    .metric-number {
+      position: relative;
+      z-index: 1;
+      font-size: 32px;
+      font-weight: 950;
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+
+    .metric-label {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .timeline {
+      padding: 26px 30px 32px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.64));
+      border: 1px solid var(--line);
+      padding: 18px;
+      align-items: start;
+    }
+
+    .year {
+      color: #fff;
+      background: linear-gradient(135deg, var(--nus-blue), var(--aidf-navy));
+      border-radius: 18px;
+      padding: 14px;
+      font-weight: 950;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    .timeline-title {
+      color: var(--aidf-navy);
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      margin-bottom: 4px;
+    }
+
+    .timeline-copy {
+      color: var(--slate);
+      font-size: 14px;
+    }
+
+    .flywheel {
+      padding: 26px 30px 32px;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .flywheel-visual {
+      min-height: 400px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(7,29,51,.98), rgba(0,61,124,.92));
+      border: 1px solid rgba(255,255,255,0.36);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      color: #fff;
+    }
+
+    .ring {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 28px solid rgba(255,255,255,0.08);
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .ring::before {
+      content: "";
+      position: absolute;
+      inset: -28px;
+      border-radius: 50%;
+      border-top: 28px solid var(--nus-orange);
+      border-right: 28px solid var(--gold);
+      border-bottom: 28px solid var(--pnp-red);
+      border-left: 28px solid rgba(255,255,255,0.12);
+      transform: rotate(-28deg);
+    }
+
+    .ring-center {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .ring-center strong {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      letter-spacing: -0.045em;
+      line-height: 1.02;
+    }
+
+    .ring-center span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(255,255,255,.7);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .node {
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.11);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,.88);
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 850;
+      backdrop-filter: blur(12px);
+    }
+
+    .node.n1 { top: 42px; left: 36px; }
+    .node.n2 { top: 42px; right: 36px; }
+    .node.n3 { bottom: 42px; left: 42px; }
+    .node.n4 { bottom: 42px; right: 42px; }
+
+    .question-tools {
+      margin: 26px 30px 0;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      position: sticky;
+      top: 96px;
+      z-index: 40;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(7,29,51,0.12);
+      backdrop-filter: blur(18px);
+    }
+
+    .searchbox {
+      width: 100%;
+      border: 1px solid rgba(7,29,51,0.16);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      color: var(--ink);
+      outline: none;
+      padding: 13px 17px;
+      font-size: 14px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .filter {
+      border: 1px solid rgba(7,29,51,0.14);
+      background: rgba(255,255,255,0.74);
+      color: var(--aidf-navy);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: all .18s ease;
+    }
+
+    .filter.active,
+    .filter:hover {
+      background: linear-gradient(135deg, var(--nus-blue), var(--aidf-navy));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 12px 26px rgba(0,61,124,.18);
+    }
+
+    .question-grid {
+      padding: 22px 30px 32px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .question-card {
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.66));
+      border: 1px solid var(--line);
+      padding: 19px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(7,29,51,0.07);
+    }
+
+    .question-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--nus-blue), var(--nus-orange), var(--pnp-red));
+    }
+
+    .q-cat {
+      color: var(--nus-orange);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .q-text {
+      color: var(--aidf-navy);
+      font-size: 16px;
+      font-weight: 850;
+      letter-spacing: -0.025em;
+      line-height: 1.35;
+    }
+
+    .references {
+      padding: 24px 30px 32px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .source-link {
+      display: block;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--aidf-navy);
+      font-size: 13px;
+      font-weight: 800;
+      transition: all .18s ease;
+    }
+
+    .source-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(239,124,0,.45);
+      background: #fff;
+    }
+
+    .note {
+      margin: 0 30px 30px;
+      border-left: 4px solid var(--nus-orange);
+      background: rgba(239,124,0,.075);
+      border-radius: 18px;
+      padding: 16px 18px;
+      color: #424D5D;
+      font-size: 14px;
+    }
+
+    .footer {
+      margin-top: 34px;
+      color: rgba(7,29,51,.66);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner, .flywheel { grid-template-columns: 1fr; }
+      .grid-3, .metric-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .question-tools { grid-template-columns: 1fr; position: static; }
+      .filters { justify-content: flex-start; }
+      .topbar { position: static; }
+    }
+
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 22px, 1180px); padding-top: 14px; }
+      .topbar { align-items: flex-start; flex-direction: column; border-radius: 22px; }
+      .hero { border-radius: 30px; }
+      .hero-inner { padding: 34px 24px; }
+      .detail-row { grid-template-columns: 1fr; gap: 4px; }
+      .grid-3, .grid-2, .metric-board, .question-grid, .references { grid-template-columns: 1fr; padding-left: 18px; padding-right: 18px; }
+      .section-header, .timeline, .flywheel, .question-tools { padding-left: 18px; padding-right: 18px; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .node { display: none; }
+      .ring { width: 230px; height: 230px; }
+      .note { margin-left: 18px; margin-right: 18px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .topbar, .question-tools, .print-btn { display: none !important; }
+      .shell { width: 100%; padding: 0; }
+      .hero, .section { box-shadow: none; break-inside: avoid; }
+      .grid-3, .question-grid, .references { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card, .timeline-item, .question-card { break-inside: avoid; }
+      a::after { content: " (" attr(href) ")"; color: #555; font-weight: 400; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div>
+          <div class="brand-kicker">NUS × AIDF</div>
+          <div class="brand-title">Plug and Play Briefing</div>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Page navigation">
+        <a href="#overview">Overview</a>
+        <a href="#history">History</a>
+        <a href="#speaker">Speaker</a>
+        <a href="#questions">Questions</a>
+        <button class="print-btn" onclick="window.print()">Print / PDF</button>
+      </nav>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Silicon Valley Study Trip · Day 4 · May 21, 2026</div>
+          <h1 id="page-title">Inside Plug and Play’s Venture-Building Playbook</h1>
+          <p class="hero-copy">A concise executive briefing on Plug and Play’s history, global innovation platform, venture-building model, speaker context, and high-value questions for the NUS-AIDF delegation.</p>
+        </div>
+        <aside class="hero-card" aria-label="Session details">
+          <div class="eyebrow">Session snapshot</div>
+          <div class="session-detail">
+            <div class="detail-row"><div class="detail-label">Company</div><div class="detail-value">Plug and Play Tech Center</div></div>
+            <div class="detail-row"><div class="detail-label">Topic</div><div class="detail-value">Inside Silicon Valley’s Venture-Building Playbook</div></div>
+            <div class="detail-row"><div class="detail-label">Time</div><div class="detail-value">2:30pm–4:00pm, Thursday, May 21, 2026</div></div>
+            <div class="detail-row"><div class="detail-label">Venue</div><div class="detail-value">Plug and Play HQ, 440 N. Wolfe Road, Sunnyvale, CA 94085</div></div>
+            <div class="detail-row"><div class="detail-label">Speaker</div><div class="detail-value">TBC in uploaded schedule; page prepared for a Plug and Play senior representative, with founder context below.</div></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="section-header">
+        <div>
+          <h2>Executive overview of Plug and Play</h2>
+          <p class="section-subtitle">Plug and Play is best understood as a global innovation platform that links startups, corporations, investors, universities, and governments. Its distinctive model combines venture capital, accelerator programs, corporate-startup matchmaking, innovation events, and physical ecosystem infrastructure.</p>
+        </div>
+        <span class="pill">Briefing lens</span>
+      </div>
+
+      <div class="metric-board" aria-label="Key facts">
+        <div class="metric"><div class="metric-number">2006</div><div class="metric-label">Plug and Play Tech Center founded</div></div>
+        <div class="metric"><div class="metric-number">100k+</div><div class="metric-label">Startups in global network</div></div>
+        <div class="metric"><div class="metric-number">60+</div><div class="metric-label">Countries represented in network</div></div>
+        <div class="metric"><div class="metric-number">2,500+</div><div class="metric-label">Startup investments cited by PnP in 2026</div></div>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-kicker">What it is</div>
+          <h3>An innovation platform, not only an accelerator</h3>
+          <p>PnP sits at the intersection of venture capital, corporate innovation, startup acceleration, and ecosystem convening. For executives, the key point is how it reduces the search, trust, and coordination costs between large firms and startups.</p>
+        </article>
+        <article class="card">
+          <div class="card-kicker">What it does</div>
+          <h3>Curates external innovation for corporations</h3>
+          <p>PnP helps corporate partners discover startups, run pilots, access emerging technologies, and learn from cross-industry innovation patterns. Its value proposition is speed: surfacing investable and pilot-ready opportunities faster than internal scanning alone.</p>
+        </article>
+        <article class="card">
+          <div class="card-kicker">Why it matters</div>
+          <h3>A practical window into Silicon Valley execution</h3>
+          <p>The visit is an opportunity to examine how venture building actually works: sourcing startups, evaluating founders, designing pilots, scaling partnerships, measuring outcomes, and converting innovation theatre into operating impact.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="model">
+      <div class="section-header">
+        <div>
+          <h2>PnP’s venture-building flywheel</h2>
+          <p class="section-subtitle">Plug and Play’s model can be viewed as a flywheel: more startups attract more corporations and investors; more corporate partners create more pilot opportunities; more pilots and investments produce more success stories; more success stories attract more founders.</p>
+        </div>
+        <span class="pill">Operating model</span>
+      </div>
+      <div class="flywheel">
+        <div class="flywheel-visual" aria-label="Venture-building flywheel illustration">
+          <div class="node n1">Startups</div>
+          <div class="node n2">Corporates</div>
+          <div class="ring"><div class="ring-center"><strong>Innovation Flywheel</strong><span>source · match · pilot · scale</span></div></div>
+          <div class="node n3">Investors</div>
+          <div class="node n4">Universities & Governments</div>
+        </div>
+        <div class="grid-2" style="padding:0;">
+          <article class="card">
+            <div class="card-kicker">1 · Source</div>
+            <h3>Scan global startup supply</h3>
+            <p>Identify startups by vertical, technology, geography, stage, and readiness for enterprise collaboration.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">2 · Match</div>
+            <h3>Map startups to corporate demand</h3>
+            <p>Translate corporate pain points into searchable startup themes, then curate introductions and demos.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">3 · Pilot</div>
+            <h3>Test with business sponsors</h3>
+            <p>Move from pitch to proof of concept, with clear owners, success metrics, timelines, and integration assumptions.</p>
+          </article>
+          <article class="card">
+            <div class="card-kicker">4 · Scale</div>
+            <h3>Convert learning into deployment</h3>
+            <p>Scale through commercial contracts, investment, ecosystem partnerships, venture creation, or internal capability building.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="history">
+      <div class="section-header">
+        <div>
+          <h2>History and origin story</h2>
+          <p class="section-subtitle">The Plug and Play story is closely linked to Silicon Valley’s physical density, founder networks, and the evolution from real-estate-enabled startup communities to a global innovation platform.</p>
+        </div>
+        <span class="pill">Timeline</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="year">1980s–1990s</div>
+          <div><div class="timeline-title">The “Lucky Building” roots</div><div class="timeline-copy">Saeed Amidi and the Amidi family’s Palo Alto property at 165 University Avenue became associated with early Silicon Valley startup activity. This origin story is central to PnP’s identity: proximity, serendipity, and relationship-building can become investment advantage.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">2006</div>
+          <div><div class="timeline-title">Plug and Play Tech Center launched in Sunnyvale</div><div class="timeline-copy">The Amidis expanded the model by acquiring a large Sunnyvale building and formally starting Plug and Play Tech Center. The organization moved beyond office space into startup acceleration, investment, corporate partnering, and events.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">2010s</div>
+          <div><div class="timeline-title">Vertical programs and corporate innovation</div><div class="timeline-copy">PnP scaled industry-specific programs across domains such as fintech, insurtech, mobility, health, energy, supply chain, enterprise, and sustainability. The platform became especially relevant for large firms trying to access startup innovation without building every capability internally.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">2020s</div>
+          <div><div class="timeline-title">Global platform era</div><div class="timeline-copy">PnP increasingly positions itself as a worldwide innovation platform connecting startups, corporations, VCs, universities, and governments. AI, climate, healthcare, mobility, financial services, enterprise software, and supply chain remain natural areas for discussion during the visit.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="speaker">
+      <div class="section-header">
+        <div>
+          <h2>Speaker briefing</h2>
+          <p class="section-subtitle">The uploaded schedule does not list a named PnP speaker. This section is therefore structured for a senior Plug and Play host, with contextual notes on founder and CEO Saeed Amidi that may help frame questions.</p>
+        </div>
+        <span class="pill">Speaker TBC</span>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <div class="card-kicker">Host profile</div>
+          <h3>Senior Plug and Play representative</h3>
+          <p>The likely host can be expected to explain how PnP sources startups, designs accelerator programs, works with corporate partners, invests across verticals, and converts startup discovery into pilots or strategic partnerships. The best questions should be operational, not promotional.</p>
+          <ul>
+            <li>Ask for concrete examples of pilot-to-scale conversion.</li>
+            <li>Ask how corporate partners define a high-quality startup problem statement.</li>
+            <li>Ask how PnP evaluates AI startups beyond demo quality.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="card-kicker">Founder context</div>
+          <h3>Saeed Amidi, Founder & CEO</h3>
+          <p>Saeed Amidi is publicly described as the founder and CEO of Plug and Play. His background in manufacturing, packaging, real estate, investing, and startup ecosystem-building helps explain PnP’s distinctive mix of physical community, venture investing, and corporate-startup matchmaking.</p>
+          <ul>
+            <li>Useful lens: PnP as a relationship infrastructure business.</li>
+            <li>Useful lens: real estate and density as early forms of ecosystem design.</li>
+            <li>Useful lens: founder intuition plus corporate distribution as a repeatable platform.</li>
+          </ul>
+        </article>
+      </div>
+      <p class="note"><strong>Speaker note:</strong> Because the schedule has no PnP speaker name, avoid personalized claims in participant materials unless the organizer confirms the speaker. If a specific PnP executive is later confirmed, replace this section with that person’s role, career highlights, and 5–6 tailored questions.</p>
+    </section>
+
+    <section class="section" id="questions">
+      <div class="section-header">
+        <div>
+          <h2>Prepared questions for Plug and Play</h2>
+          <p class="section-subtitle">These questions are designed for an executive audience. They focus on operational lessons, AI-era venture building, corporate-startup collaboration, Singapore/ASEAN relevance, and speaker-specific insights.</p>
+        </div>
+        <span class="pill"><span id="questionCount">0</span> questions</span>
+      </div>
+      <div class="question-tools">
+        <input class="searchbox" id="questionSearch" type="search" placeholder="Search questions: AI, pilot, Singapore, speaker, investment…" />
+        <div class="filters" id="questionFilters"></div>
+      </div>
+      <div class="question-grid" id="questionGrid"></div>
+    </section>
+
+    <section class="section" id="references">
+      <div class="section-header">
+        <div>
+          <h2>Selected reference links</h2>
+          <p class="section-subtitle">Use these public sources to check company background before the session. The speaker details should still be confirmed by the program organizer.</p>
+        </div>
+        <span class="pill">Sources</span>
+      </div>
+      <div class="references">
+        <a class="source-link" href="https://www.plugandplaytechcenter.com/" target="_blank" rel="noopener">Plug and Play official website ↗</a>
+        <a class="source-link" href="https://www.plugandplaytechcenter.com/about-us/our-history" target="_blank" rel="noopener">Plug and Play history page ↗</a>
+        <a class="source-link" href="https://www.plugandplaytechcenter.com/locations/silicon-valley-hq" target="_blank" rel="noopener">Plug and Play Silicon Valley HQ ↗</a>
+        <a class="source-link" href="https://www.plugandplaytechcenter.com/innovation-services/corporations" target="_blank" rel="noopener">Corporate innovation services ↗</a>
+        <a class="source-link" href="https://www.plugandplaytechcenter.com/innovation-services/startups" target="_blank" rel="noopener">Startup acceleration programs ↗</a>
+        <a class="source-link" href="https://www.plugandplaytechcenter.com/insights/the-next-revolution-in-ai-investing" target="_blank" rel="noopener">PnP insight: AI investing ↗</a>
+      </div>
+    </section>
+
+    <footer class="footer">Prepared for NUS-AIDF executive learning use. Visual language: NUS blue, NUS orange, deep navy, champagne ivory, and restrained Plug and Play red accent.</footer>
+  </main>
+
+  <script>
+    const questions = [
+      { cat: "PnP Model", q: "What is the most misunderstood part of Plug and Play’s model: accelerator, VC investor, corporate innovation platform, or ecosystem builder?" },
+      { cat: "PnP Model", q: "How does PnP decide which industry verticals deserve a dedicated accelerator or corporate innovation program?" },
+      { cat: "PnP Model", q: "What does a high-quality corporate problem statement look like before it is translated into startup scouting?" },
+      { cat: "PnP Model", q: "How do you balance the needs of startups, corporate partners, and investors when their timelines and incentives differ?" },
+      { cat: "PnP Model", q: "What are the strongest signals that a startup is ready to work with a large enterprise rather than only pitch to investors?" },
+      { cat: "Pilot to Scale", q: "Across PnP programs, what percentage of corporate-startup pilots typically move into production, commercial contracts, investment, or strategic partnership?" },
+      { cat: "Pilot to Scale", q: "What are the top three reasons promising startup pilots fail to scale inside large corporations?" },
+      { cat: "Pilot to Scale", q: "How should a corporation design a pilot so that success can lead to enterprise-wide deployment rather than a one-off proof of concept?" },
+      { cat: "Pilot to Scale", q: "Who should own the post-pilot handoff: innovation team, business unit, procurement, IT, risk, or venture team?" },
+      { cat: "Pilot to Scale", q: "What metrics best distinguish innovation theatre from genuine venture-building progress?" },
+      { cat: "AI Era", q: "In the current AI cycle, which startup categories are seeing real enterprise adoption rather than only experimentation?" },
+      { cat: "AI Era", q: "How does PnP evaluate AI startups when many demos look impressive but the underlying differentiation may be thin?" },
+      { cat: "AI Era", q: "What creates a durable AI startup moat today: proprietary data, workflow distribution, infrastructure, domain expertise, talent, or speed of execution?" },
+      { cat: "AI Era", q: "How do corporate partners assess AI risks such as hallucination, privacy leakage, cybersecurity exposure, and regulatory uncertainty during startup pilots?" },
+      { cat: "AI Era", q: "What types of AI startups are most likely to become acquisition targets for large enterprises over the next three years?" },
+      { cat: "Investment", q: "How does PnP’s investment decision process differ from traditional VC firms that do not operate large corporate innovation programs?" },
+      { cat: "Investment", q: "How much weight do you place on founder quality versus market timing, early revenue, technical defensibility, or corporate partner demand?" },
+      { cat: "Investment", q: "What patterns have you observed among startups that successfully sell to large enterprises?" },
+      { cat: "Investment", q: "How has the fundraising environment changed for AI startups after the initial generative AI hype cycle?" },
+      { cat: "Investment", q: "What should corporate executives learn from VC-style portfolio thinking when managing internal AI transformation initiatives?" },
+      { cat: "Corporate Innovation", q: "What capabilities should large corporations build internally before engaging external startup ecosystems?" },
+      { cat: "Corporate Innovation", q: "When should a large corporation build, buy, partner with, invest in, or acquire a startup?" },
+      { cat: "Corporate Innovation", q: "How do leading corporate partners structure budgets, governance, and incentives for external innovation?" },
+      { cat: "Corporate Innovation", q: "What is the right role of procurement and compliance in startup collaboration without slowing the process too much?" },
+      { cat: "Corporate Innovation", q: "How do you prevent corporate innovation teams from becoming isolated from business units that own the P&L?" },
+      { cat: "Singapore / ASEAN", q: "What opportunities do you see for Singapore-based firms to use PnP’s global network for AI, fintech, insurance, sustainability, and supply-chain innovation?" },
+      { cat: "Singapore / ASEAN", q: "How does the startup-corporate collaboration model differ in Silicon Valley, Singapore, Japan, Europe, and the Middle East?" },
+      { cat: "Singapore / ASEAN", q: "What would make Singapore an attractive regional hub for AI startup pilots and corporate innovation programs?" },
+      { cat: "Singapore / ASEAN", q: "How can universities such as NUS and institutes such as AIDF work with platforms like PnP to support applied AI innovation?" },
+      { cat: "Singapore / ASEAN", q: "What gaps do ASEAN startups face when trying to sell to global enterprises, and how can accelerators reduce those gaps?" },
+      { cat: "Speaker", q: "From your personal experience at PnP, what is one founder pattern that consistently predicts resilience and one pattern that predicts failure?" },
+      { cat: "Speaker", q: "Which corporate partner behavior most improves the quality of startup collaboration?" },
+      { cat: "Speaker", q: "What is one lesson from PnP’s history that large organizations often overlook when trying to copy Silicon Valley?" },
+      { cat: "Speaker", q: "What has changed most in the PnP playbook since the rise of generative AI?" },
+      { cat: "Speaker", q: "If you were advising an executive team beginning AI transformation today, what would you tell them to stop doing immediately?" }
+    ];
+
+    const categories = ["All", ...Array.from(new Set(questions.map(item => item.cat)))];
+    let active = "All";
+
+    function renderFilters() {
+      const wrap = document.getElementById("questionFilters");
+      wrap.innerHTML = categories.map(cat => `<button class="filter ${cat === active ? 'active' : ''}" data-cat="${cat}">${cat}</button>`).join("");
+      wrap.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          active = btn.dataset.cat;
+          renderFilters();
+          renderQuestions();
+        });
+      });
+    }
+
+    function renderQuestions() {
+      const query = document.getElementById("questionSearch").value.trim().toLowerCase();
+      const filtered = questions.filter(item => {
+        const catMatch = active === "All" || item.cat === active;
+        const haystack = `${item.cat} ${item.q}`.toLowerCase();
+        return catMatch && (!query || haystack.includes(query));
+      });
+      document.getElementById("questionGrid").innerHTML = filtered.map(item => `
+        <article class="question-card">
+          <div class="q-cat">${item.cat}</div>
+          <div class="q-text">${item.q}</div>
+        </article>
+      `).join("");
+      document.getElementById("questionCount").textContent = filtered.length;
+    }
+
+    document.getElementById("questionSearch").addEventListener("input", renderQuestions);
+    renderFilters();
+    renderQuestions();
+  </script>
+</body>
+</html>
