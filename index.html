@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMAi 2026 USA Study Trip | NUS AIDF</title>
+  <style>
+    :root {
+      --nus-blue: #003D7C;
+      --deep-blue: #061a35;
+      --aidf-orange: #EF7C00;
+      --gold: #f6c36a;
+      --cream: #f8f4ec;
+      --paper: #fffdf8;
+      --white: #ffffff;
+      --ink: #1d2733;
+      --muted: #526170;
+      --line: rgba(0, 61, 124, 0.16);
+      --shadow: 0 14px 32px rgba(20, 32, 48, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.58;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 18px 44px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--deep-blue) 0%, var(--nus-blue) 58%, #0b2748 100%);
+      color: #ffffff;
+      border-radius: 24px;
+      padding: 36px 34px 32px;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .eyebrow {
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 40px;
+      line-height: 1.12;
+      font-weight: 500;
+    }
+
+    .hero p {
+      max-width: 900px;
+      margin: 0;
+      color: #e8eef7;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .chip {
+      font-size: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.11);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 15px 18px;
+      background: #fffaf1;
+      border-left: 5px solid var(--aidf-orange);
+      border-radius: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      color: #283746;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .stat {
+      background: var(--white);
+      border: 1px solid rgba(0, 61, 124, 0.14);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(20, 32, 48, 0.06);
+    }
+
+    .stat-label {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #6b7684;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      color: var(--nus-blue);
+      margin-top: 4px;
+    }
+
+    .section {
+      background: var(--paper);
+      border: 1px solid rgba(0, 61, 124, 0.18);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .section-header {
+      background: linear-gradient(90deg, #ffffff 0%, #f2ecdf 100%);
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(0, 61, 124, 0.12);
+    }
+
+    .section-kicker {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--aidf-orange);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 5px 0 0;
+      color: var(--deep-blue);
+      font-size: 26px;
+      font-weight: 500;
+    }
+
+    .section-body {
+      padding: 22px 24px;
+      background: var(--white);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid #eadfcb;
+      background: #fffdf8;
+      border-radius: 18px;
+      padding: 18px;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(20, 32, 48, 0.12);
+      border-color: rgba(239, 124, 0, 0.48);
+    }
+
+    .company-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--nus-blue);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      color: var(--deep-blue);
+      font-size: 23px;
+      line-height: 1.18;
+      font-weight: 500;
+    }
+
+    .card p {
+      margin: 0 0 16px;
+      color: #465567;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      flex: 1;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .tag {
+      color: var(--nus-blue);
+      background: #f1f5fb;
+      border: 1px solid rgba(0, 61, 124, 0.12);
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--nus-blue);
+      padding: 10px 12px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(0, 61, 124, 0.35);
+    }
+
+    .button:hover {
+      background: #062f60;
+    }
+
+    .button.secondary {
+      background: #fffaf1;
+      color: var(--nus-blue);
+      border: 1px solid rgba(239, 124, 0, 0.5);
+    }
+
+    .button.secondary:hover {
+      background: #f8ead2;
+    }
+
+    .resource-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .resource {
+      background: #f8f4ec;
+      border: 1px solid #eadfcb;
+      border-radius: 16px;
+      padding: 15px;
+    }
+
+    .resource strong {
+      color: var(--nus-blue);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .resource span {
+      display: block;
+      color: #526170;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .footer {
+      margin-top: 22px;
+      padding: 22px;
+      background: var(--deep-blue);
+      color: var(--white);
+      border-radius: 20px;
+      border-top: 5px solid var(--aidf-orange);
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    code {
+      background: #f1f5fb;
+      color: #0b2748;
+      padding: 2px 5px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 31px;
+      }
+
+      .hero,
+      .section-body,
+      .section-header {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="eyebrow">NUS Asian Institute of Digital Finance · Executive Master in AI and Digital Transformation</div>
+      <h1>EMAi 2026 USA Study Trip</h1>
+      <p>
+        Company briefing hub for the Silicon Valley / USA study trip. Use this page as the landing page for student preparation, company background readings, AI glossary, and executive-level questions before each visit.
+      </p>
+      <div class="chips">
+        <span class="chip">AI Strategy</span>
+        <span class="chip">Enterprise Transformation</span>
+        <span class="chip">Agentic AI</span>
+        <span class="chip">Cloud & Infrastructure</span>
+        <span class="chip">Responsible AI</span>
+        <span class="chip">Industrial AI</span>
+      </div>
+    </section>
+
+    <div class="note">
+      <strong>Study trip briefing hub:</strong> All buttons below link only to the company pages and the AI Glossary files in this GitHub repository. The filenames match the uploaded files exactly, including capitalization.
+    </div>
+
+    <!-- SNAPSHOT STRIP -->
+    <section class="stats" aria-label="Trip content summary">
+      <div class="stat">
+        <div class="stat-label">Company pages</div>
+        <div class="stat-value">10</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Glossary page</div>
+        <div class="stat-value">1</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Audience</div>
+        <div class="stat-value">EMAi Students</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Theme</div>
+        <div class="stat-value">NUS · AIDF</div>
+      </div>
+    </section>
+
+    <!-- COMPANY PAGES -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-kicker">Company Briefing Pages</div>
+        <h2>Pre-Visit Study Pages</h2>
+      </div>
+      <div class="section-body">
+        <div class="grid">
+
+          <article class="card">
+            <span class="company-number">1</span>
+            <h3>Adobe</h3>
+            <p>Creative AI, Firefly, brand governance, content supply chains, and the shift from creative tools to an AI control layer for customer experience.</p>
+            <div class="tag-row"><span class="tag">Creative AI</span><span class="tag">Firefly</span><span class="tag">Brand Governance</span></div>
+            <a class="button" href="Adobe.html">Open Adobe Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">2</span>
+            <h3>Netflix</h3>
+            <p>Recommendation systems, personalization, monetization, ad-supported tiers, localization, live content, and product strategy at global scale.</p>
+            <div class="tag-row"><span class="tag">Personalization</span><span class="tag">Conversion</span><span class="tag">Streaming</span></div>
+            <a class="button" href="Netflix.html">Open Netflix Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">3</span>
+            <h3>Amazon / AWS</h3>
+            <p>AWS, Bedrock, Amazon Q, Trainium, Anthropic, cloud AI infrastructure, and Amazon’s Working Backwards innovation model.</p>
+            <div class="tag-row"><span class="tag">AWS</span><span class="tag">Bedrock</span><span class="tag">Working Backwards</span></div>
+            <a class="button" href="Amazon.html">Open Amazon Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">4</span>
+            <h3>Cisco</h3>
+            <p>AI-ready networking, Splunk observability, AI Defense, AgenticOps, Silicon One, and the secure infrastructure layer underneath enterprise AI.</p>
+            <div class="tag-row"><span class="tag">AI Networking</span><span class="tag">Splunk</span><span class="tag">AgenticOps</span></div>
+            <a class="button" href="Cisco.html">Open Cisco Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">5</span>
+            <h3>Box</h3>
+            <p>Intelligent Content Management, Box AI, Box Agent, permission-aware enterprise content, and the unstructured-data layer for AI workflows.</p>
+            <div class="tag-row"><span class="tag">Content AI</span><span class="tag">Box Agent</span><span class="tag">Governance</span></div>
+            <a class="button" href="Box.html">Open Box Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">6</span>
+            <h3>Salesforce</h3>
+            <p>Agentforce, agentic work units, Data 360, Slack, CRM transformation, and whether AI agents will disrupt the traditional SaaS model.</p>
+            <div class="tag-row"><span class="tag">Agentforce</span><span class="tag">SaaS</span><span class="tag">CRM</span></div>
+            <a class="button" href="Salesforce.html">Open Salesforce Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">7</span>
+            <h3>Google DeepMind</h3>
+            <p>Frontier AI, Gemini, Gemma, SAIF, prompt injection, SynthID, model trust, resilience, and enterprise-grade AI safety.</p>
+            <div class="tag-row"><span class="tag">Gemini</span><span class="tag">Trust</span><span class="tag">Frontier AI</span></div>
+            <a class="button" href="Deepmind.html">Open Google DeepMind Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">8</span>
+            <h3>Microsoft</h3>
+            <p>Microsoft 365 Copilot, GitHub Copilot, Azure AI Foundry, Azure OpenAI, Phi / MAI models, startup ecosystems, and AI ROI.</p>
+            <div class="tag-row"><span class="tag">Copilot</span><span class="tag">Azure AI</span><span class="tag">Startups</span></div>
+            <a class="button" href="Microsoft.html">Open Microsoft Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">9</span>
+            <h3>Piva Capital</h3>
+            <p>Deep tech venture capital, industrial AI, energy transition, PETRONAS links, hardware scale-up, and the physical infrastructure of AI.</p>
+            <div class="tag-row"><span class="tag">Deep Tech</span><span class="tag">Industrial AI</span><span class="tag">Energy</span></div>
+            <a class="button" href="PivaVC.html">Open Piva Capital Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">10</span>
+            <h3>Hayden AI</h3>
+            <p>Edge AI, smart cities, computer vision, transit enforcement, privacy by design, public-sector AI governance, and dual-use risk.</p>
+            <div class="tag-row"><span class="tag">Edge AI</span><span class="tag">Smart Cities</span><span class="tag">Privacy</span></div>
+            <a class="button" href="Hayden.html">Open Hayden AI Page</a>
+          </article>
+
+          <article class="card">
+            <span class="company-number">AI</span>
+            <h3>AI Glossary</h3>
+            <p>Comprehensive glossary of AI, agentic AI, infrastructure, security, governance, SaaS, venture, and smart-city terms likely to appear in the company talks.</p>
+            <div class="tag-row"><span class="tag">AI Terms</span><span class="tag">Glossary</span><span class="tag">Preparation</span></div>
+            <a class="button" href="AI%20Glossary.html">Open AI Glossary</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
